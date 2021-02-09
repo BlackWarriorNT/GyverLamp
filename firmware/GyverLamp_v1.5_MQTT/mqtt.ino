@@ -172,6 +172,7 @@ String Get_EFFName (int eff_idx) {
 
 void MQTTUpdateState () {
   
+   mqttclient.publish(String("homeassistant/light/"+clientId+"/ip").c_str(), String(WiFi.localIP().toString()).c_str(), true);
    mqttclient.publish(String("homeassistant/light/"+clientId+"/status").c_str(), ONflag ? "ON" : "OFF", true);
    mqttclient.publish(String("homeassistant/light/"+clientId+"/brightness/status").c_str(), String(modes[currentMode].brightness).c_str(), true);
    mqttclient.publish(String("homeassistant/light/"+clientId+"/effect/status").c_str(), Get_EFFName(currentMode).c_str(), true);
